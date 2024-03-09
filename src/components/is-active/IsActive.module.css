@@ -1,0 +1,12 @@
+.user__active,
+.user__inactive {
+	width: 1em;
+	height: 1em;
+	border-radius: 50%;
+}
+.user__active {
+	background-color: green;
+}
+.user__inactive {
+	background-color: red;
+}
