@@ -1,0 +1,29 @@
+.user {
+	border-radius: 0.3em;
+}
+.user__img {
+	border-radius: 0.3em;
+}
+.user__info {
+	padding: 0.5em;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.user__name {
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+
+	gap: 0.5em;
+}
+.user__btn {
+	padding: 0.2em 0.8em;
+	border-radius: 0.3em;
+	font-weight: 600;
+	background-color: transparent;
+	border: 0.0625rem solid var(--color);
+	color: var(--color);
+
+	cursor: pointer;
+}
