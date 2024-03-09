@@ -1,0 +1,15 @@
+.user__teacher,
+.user__student,
+.user__other {
+	font-size: 0.7rem;
+	text-transform: uppercase;
+}
+.user__teacher {
+	color: aquamarine;
+}
+.user__student {
+	color: violet;
+}
+.user__other {
+	color: gray;
+}
