@@ -10,15 +10,15 @@ const UserList = ({ initialUsers }) => {
 
 	const [users, setUsers] = useState(initialUsers);
 
-	const toggleUserActive = (userID) => {
-		const newUsers = [...users];
-		const userIndex = newUsers.findIndex((user) => user.id === userID);
-		if (userIndex === -1) return;
+	// const toggleUserActive = (userID) => {
+	// 	const newUsers = [...users];
+	// 	const userIndex = newUsers.findIndex((user) => user.id === userID);
+	// 	if (userIndex === -1) return;
 
-		newUsers[userIndex].active = !newUsers[userIndex].active;
+	// 	newUsers[userIndex].active = !newUsers[userIndex].active;
 
-		setUsers(newUsers);
-	};
+	// 	setUsers(newUsers);
+	// };
 
 	let usersFiltered = filterOnlyActive(users, onlyActive);
 	usersFiltered = filterByName(usersFiltered, search);
@@ -35,7 +35,7 @@ const UserList = ({ initialUsers }) => {
 				sort={sort}
 				setSort={setSort}
 			/>
-			<UsersRow users={usersFiltered} toggleUserActive={toggleUserActive} />
+			<UsersRow users={usersFiltered} />
 		</div>
 	);
 };
