@@ -10,16 +10,6 @@ const UserList = ({ initialUsers }) => {
 
 	const [users, setUsers] = useState(initialUsers);
 
-	// const toggleUserActive = (userID) => {
-	// 	const newUsers = [...users];
-	// 	const userIndex = newUsers.findIndex((user) => user.id === userID);
-	// 	if (userIndex === -1) return;
-
-	// 	newUsers[userIndex].active = !newUsers[userIndex].active;
-
-	// 	setUsers(newUsers);
-	// };
-
 	let usersFiltered = filterOnlyActive(users, onlyActive);
 	usersFiltered = filterByName(usersFiltered, search);
 	usersFiltered = sortBy(usersFiltered, sort);
@@ -48,7 +38,12 @@ const useFilters = () => {
 	});
 
 	const setSearch = (search) => setFilters({ ...filters, search });
-	const setOnlyActive = (onlyActive) => setFilters({ ...filters, onlyActive });
+	const setOnlyActive = (onlyActive) => {
+		if (onlyActive && filters.sort === 3) {
+			return setFilters({ ...filters, sort: 0, onlyActive });
+		}
+		setFilters({ ...filters, onlyActive });
+	};
 	const setSort = (sort) => setFilters({ ...filters, sort });
 
 	return { ...filters, setSearch, setOnlyActive, setSort };
@@ -81,7 +76,19 @@ const sortBy = (users, sort) => {
 				return 0;
 			});
 		case 2:
-			return usersToSort.filter((user) => user.active);
+			return usersToSort.sort((a, b) => {
+				if (a.role === b.role) return 0;
+				if (a.role === 'profesor') return -1;
+				if (a.role === 'estudiante' && b.role === 'otro') return -1;
+
+				return 1;
+			});
+		case 3:
+			return usersToSort.sort((a, b) => {
+				if (a.active === b.active) return 0;
+				if (a.active && !b.active) return -1;
+				return 1;
+			});
 		default:
 			return users;
 	}
