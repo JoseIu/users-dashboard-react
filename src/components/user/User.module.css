@@ -4,13 +4,19 @@
 	padding: 1em;
 	border-radius: 0.3em;
 	box-shadow: var(--shadow-md);
+	border-radius: var(--border-r-md);
 
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	align-items: center;
 }
+.user__display {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
 .user__img {
-	width: 2em;
+	width: 2.5em;
 	border-radius: 50%;
 }
 .user__username {
@@ -19,4 +25,5 @@
 }
 
 .user__name {
+	/* background-color: rebeccapurple; */
 }
