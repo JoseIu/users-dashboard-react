@@ -1,0 +1,33 @@
+.select {
+	position: relative;
+}
+.select__select {
+	height: 2em;
+	padding: 0.3em 2em;
+
+	border: none;
+	appearance: none;
+
+	box-shadow: var(--shadow-sm);
+	border-radius: var(--border-r-sm);
+}
+
+.select__select:focus {
+	outline: none;
+	box-shadow: var(--shadow-md);
+}
+
+.select__arrow {
+	top: 0.42em;
+	right: 0.5em;
+	position: absolute;
+	width: 1.3em;
+	pointer-events: none;
+	transition: all 0.2s ease;
+}
+.select__select:focus + .select__arrow {
+	transform: rotate(180deg);
+}
+.select__select:not(:focus) + .select__arrow {
+	transform: rotate(0);
+}
