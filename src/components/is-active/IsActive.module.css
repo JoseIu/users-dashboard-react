@@ -1,12 +1,20 @@
 .user__active,
 .user__inactive {
-	width: 1em;
-	height: 1em;
-	border-radius: 50%;
+	font-size: var(--text-sm);
+	display: flex;
+	gap: 0.3em;
+	align-items: center;
+	font-weight: 500;
+	/* justify-content: center; */
 }
 .user__active {
-	background-color: green;
+	color: var(--green);
 }
 .user__inactive {
-	background-color: red;
+	color: var(--red);
+}
+
+.user__icon {
+	height: 1rem;
+	width: 1rem;
 }
