@@ -5,7 +5,7 @@ import style from './User.module.css';
 const User = ({ name, username, active, role, img }) => {
 	return (
 		<article className={style.user}>
-			<div className=''>
+			<div className={style.user__display}>
 				<img className={style.user__img} src={img} alt={name} />
 				<span className={style.user__username}>{username} </span>
 			</div>
