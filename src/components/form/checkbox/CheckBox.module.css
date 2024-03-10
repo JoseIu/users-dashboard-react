@@ -1,0 +1,27 @@
+.label {
+	position: relative;
+	width: 2em;
+	height: 2em;
+
+	border-radius: var(--border-r-sm);
+	box-shadow: var(--shadow-sm);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.4em;
+}
+.label:focus-within {
+	box-shadow: var(--shadow-md);
+}
+.check__input {
+	position: absolute;
+	opacity: 0;
+}
+.check__icon {
+	width: 1.2em;
+	user-select: none;
+}
+.check__input:not(:checked) + .check__icon {
+	display: none;
+}
