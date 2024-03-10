@@ -1,19 +1,12 @@
 .form {
 	display: flex;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: space-between;
 }
 
-.form__search {
-	padding: 0.3em 1em;
-	border-radius: 0.3em;
-}
 .form__active {
 	display: flex;
 	align-items: center;
+
 	gap: 0.4em;
-}
-.form__checkbox {
-	width: 1em;
-	height: 1em;
 }
