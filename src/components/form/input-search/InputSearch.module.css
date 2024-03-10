@@ -1,0 +1,23 @@
+.form__container {
+	position: relative;
+}
+.form__search {
+	padding: 0.5em 2.5em;
+	border-radius: 0.3em;
+	outline: none;
+	box-shadow: var(--shadow-sm);
+}
+.form__search:focus {
+	box-shadow: var(--shadow-md);
+}
+.form__search::placeholder {
+	color: var(--lightgray);
+}
+.form__icon {
+	position: absolute;
+	width: 1em;
+	top: 30%;
+	left: 0.8em;
+	color: var(--gray);
+	pointer-events: none;
+}
