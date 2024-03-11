@@ -3,6 +3,8 @@
 .user__other {
 	padding: 0.25em 0.5em;
 	text-align: center;
+	font-weight: 600;
+
 	font-size: var(--text-sm);
 	text-transform: uppercase;
 	border-radius: var(--border-r-sm);
