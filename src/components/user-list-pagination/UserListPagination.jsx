@@ -1,7 +1,5 @@
-import IconButton from '../buttons/IconButton';
 import Select from '../form/select/Select';
-import ArrowLeftIcon from '../icons/ArrowLeftIcon';
-import ArrowRightIcon from '../icons/ArrowRightIcon';
+import PageSelector from '../page-selector/PageSelector';
 import style from './UserListPagination.module.css';
 
 const UserListPagination = ({
@@ -9,6 +7,7 @@ const UserListPagination = ({
 	setPage,
 	itemPerPage,
 	setItemsPerPage,
+	totalPage,
 }) => (
 	<div className={style.pagination}>
 		<div className={style.pagination__select}>
@@ -23,10 +22,7 @@ const UserListPagination = ({
 			<span>Elementos por página</span>
 		</div>
 
-		<div className={style.pagination__btns}>
-			<IconButton kind='black' filled icon={ArrowLeftIcon} />
-			<IconButton kind='black' filled icon={ArrowRightIcon} />
-		</div>
+		<PageSelector page={page} setPage={setPage} totalPage={totalPage} />
 	</div>
 );
 
