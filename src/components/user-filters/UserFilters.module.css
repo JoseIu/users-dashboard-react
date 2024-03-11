@@ -1,7 +1,8 @@
 .form {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	column-gap: 1.5em;
+	row-gap: 2em;
 }
 
 .form__active {

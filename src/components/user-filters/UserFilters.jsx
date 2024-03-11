@@ -13,18 +13,10 @@ const UserFilters = ({
 }) => (
 	<form className={style.form}>
 		<InputSearh
-			placeholder='search'
+			placeholder='Buscar....'
 			value={search}
 			onChange={(e) => setSearch(e.target.value)}
 		/>
-
-		<div className={style.form__active}>
-			<CheckBox
-				checked={onlyActive}
-				onChange={(e) => setOnlyActive(e.target.checked)}
-			/>
-			<span>Solo activos</span>
-		</div>
 
 		<Select value={sort} onChange={(e) => setSort(Number(e.target.value))}>
 			<option value={0}>Por defecto</option>
@@ -34,6 +26,13 @@ const UserFilters = ({
 				Por activación
 			</option>
 		</Select>
+		<div className={style.form__active}>
+			<CheckBox
+				checked={onlyActive}
+				onChange={(e) => setOnlyActive(e.target.checked)}
+			/>
+			<span>Solo activos</span>
+		</div>
 	</form>
 );
 export default UserFilters;
