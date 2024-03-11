@@ -12,38 +12,39 @@ import UsersRow from '../users-row/UsersRow';
 import style from './UserList.module.css';
 
 const UserList = ({ initialUsers }) => {
-	const { search, setSearch, onlyActive, setOnlyActive, sort, setSort } =
-		useFilters();
+	const {
+		filters,
+		setSearch,
 
-	const [page, setPages] = useState(1);
-	const [itemsPerPage, setItemsPerPage] = useState(3);
+		setOnlyActive,
 
-	const { usersFiltered } = getUsers(
-		initialUsers,
-		onlyActive,
-		search,
-		sort,
-		page,
-		itemsPerPage,
-	);
+		setSort,
+
+		setPages,
+
+		setItemsPerPage,
+	} = useFilters();
+
+	const { usersFiltered, totalPage } = getUsers(initialUsers, filters);
 
 	return (
 		<div className={style.container}>
 			<Title />
 			<UserFilters
-				search={search}
+				search={filters.search}
 				setSearch={setSearch}
-				onlyActive={onlyActive}
+				onlyActive={filters.onlyActive}
 				setOnlyActive={setOnlyActive}
-				sort={sort}
+				sort={filters.sort}
 				setSort={setSort}
 			/>
 			<UsersRow users={usersFiltered} />
 			<UserListPagination
-				page={page}
+				page={filters.page}
 				setPage={setPages}
-				itemPerPage={itemsPerPage}
+				itemPerPage={filters.itemsPerPage}
 				setItemsPerPage={setItemsPerPage}
+				totalPage={totalPage}
 			/>
 		</div>
 	);
@@ -57,19 +58,16 @@ const usersPagination = (users, page, itemsPerPage) => {
 };
 const getUsers = (
 	initialUsers,
-	onlyActive,
-	search,
-	sort,
-	page,
-	itemsPerPage,
+	{ onlyActive, search, sort, page, itemsPerPage },
 ) => {
 	let usersFiltered = filterOnlyActive(initialUsers, onlyActive);
 	usersFiltered = filterByName(usersFiltered, search);
 	usersFiltered = sortBy(usersFiltered, sort);
+	const totalPage = Math.ceil(usersFiltered.length / itemsPerPage);
 
 	usersFiltered = usersPagination(usersFiltered, page, itemsPerPage);
 
-	return { usersFiltered };
+	return { usersFiltered, totalPage };
 };
 
 const useFilters = () => {
@@ -77,18 +75,35 @@ const useFilters = () => {
 		search: '',
 		onlyActive: false,
 		sort: 0,
+		page: 1,
+		itemsPerPage: 3,
 	});
 
-	const setSearch = (search) => setFilters({ ...filters, search });
+	const setSearch = (search) => setFilters({ ...filters, page: 1, search });
 	const setOnlyActive = (onlyActive) => {
 		if (onlyActive && filters.sort === SORT_OPTIONS.ACTIVE) {
-			return setFilters({ ...filters, sort: SORT_OPTIONS.DEFAULT, onlyActive });
+			return setFilters({
+				...filters,
+				sort: SORT_OPTIONS.DEFAULT,
+				page: 1,
+				onlyActive,
+			});
 		}
 		setFilters({ ...filters, onlyActive });
 	};
 	const setSort = (sort) => setFilters({ ...filters, sort });
 
-	return { ...filters, setSearch, setOnlyActive, setSort };
+	const setPages = (page) => setFilters({ ...filters, page });
+	const setItemsPerPage = (itemsPerPage) => ({ ...filters, itemsPerPage });
+
+	return {
+		filters,
+		setSearch,
+		setOnlyActive,
+		setSort,
+		setPages,
+		setItemsPerPage,
+	};
 };
 
 export default UserList;
