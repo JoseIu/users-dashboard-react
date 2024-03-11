@@ -1,3 +1,4 @@
+import { SORT_OPTIONS } from '../../constants/sortOptions';
 import CheckBox from '../form/checkbox/CheckBox';
 import InputSearh from '../form/input-search/InputSearch';
 import Select from '../form/select/Select';
@@ -19,10 +20,10 @@ const UserFilters = ({
 		/>
 
 		<Select value={sort} onChange={(e) => setSort(Number(e.target.value))}>
-			<option value={0}>Por defecto</option>
-			<option value={1}>Por nombre</option>
-			<option value={2}>Por rol</option>
-			<option disabled={onlyActive} value={3}>
+			<option value={SORT_OPTIONS.DEFAULT}>Por defecto</option>
+			<option value={SORT_OPTIONS.NAME}>Por nombre</option>
+			<option value={SORT_OPTIONS.ROLE}>Por rol</option>
+			<option disabled={onlyActive} value={SORT_OPTIONS.ACTIVE}>
 				Por activación
 			</option>
 		</Select>
