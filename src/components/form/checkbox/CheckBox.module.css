@@ -19,7 +19,7 @@
 	opacity: 0;
 }
 .check__icon {
-	width: 1.2em;
+	width: 1.5em;
 	user-select: none;
 }
 .check__input:not(:checked) + .check__icon {
