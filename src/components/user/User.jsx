@@ -1,3 +1,5 @@
+import DeleteIcon from '../icons/DeleteIcons';
+import EditIcon from '../icons/EditIcon';
 import IsActive from '../is-active/IsActive';
 import UserRole from '../user-role/UserRole';
 import style from './User.module.css';
@@ -12,6 +14,10 @@ const User = ({ name, username, active, role, img }) => {
 			<h2 className={style.user__name}>{name}</h2>
 			<IsActive isActive={active} />
 			<UserRole role={role} />
+			<div className={style.user__actions}>
+				<EditIcon className={style.user__edit} />
+				<DeleteIcon className={style.user__delete} />
+			</div>
 		</article>
 	);
 };
