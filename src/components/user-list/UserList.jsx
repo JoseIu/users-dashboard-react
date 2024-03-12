@@ -1,11 +1,5 @@
-import { useEffect, useState } from 'react';
 import useFilters from '../../lib/hooks/useFilters';
-import {
-	filterByName,
-	filterOnlyActive,
-	sortBy,
-} from '../../lib/users/userFilters';
-import usersPagination from '../../lib/users/usersPagination';
+import { useUsers } from '../../lib/hooks/useUsers';
 import Title from '../title/Tile';
 import UserFilters from '../user-filters/UserFilters';
 import UserListPagination from '../user-list-pagination/UserListPagination';
@@ -23,7 +17,7 @@ const UserList = () => {
 		setItemsPerPage,
 	} = useFilters();
 
-	const { usersPaginated, totalPage } = useUsers(filters);
+	const { usersPaginated, totalPage, error, isLoading } = useUsers(filters);
 
 	return (
 		<div className={style.container}>
@@ -36,7 +30,7 @@ const UserList = () => {
 				sort={filters.sort}
 				setSort={setSort}
 			/>
-			<UsersRow users={usersPaginated} />
+			<UsersRow users={usersPaginated} isLoading={isLoading} error={error} />
 			<UserListPagination
 				page={filters.page}
 				setPage={setPages}
@@ -46,42 +40,6 @@ const UserList = () => {
 			/>
 		</div>
 	);
-};
-const fetchUsers = async (setUsers, signal) => {
-	const response = await fetch('http://localhost:3000/users', { signal });
-
-	const data = await response.json();
-	setUsers(data);
-};
-
-const usersToDisplay = (
-	users,
-	{ onlyActive, search, sort, page, itemsPerPage },
-) => {
-	let usersFiltered = filterOnlyActive(users, onlyActive);
-	usersFiltered = filterByName(usersFiltered, search);
-	usersFiltered = sortBy(usersFiltered, sort);
-
-	const { totalPage, usersPaginated } = usersPagination(
-		usersFiltered,
-		page,
-		itemsPerPage,
-	);
-
-	return { usersPaginated, totalPage };
-};
-const useUsers = (filters) => {
-	const [users, setUsers] = useState([]);
-
-	useEffect(() => {
-		const controller = new AbortController();
-		fetchUsers(setUsers, controller.signal);
-
-		return () => controller.abort();
-	}, []);
-	const { usersPaginated, totalPage } = usersToDisplay(users, filters);
-
-	return { usersPaginated, totalPage };
 };
 
 export default UserList;
