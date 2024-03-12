@@ -1,4 +1,5 @@
 import { SORT_OPTIONS } from '../../constants/sortOptions';
+import Button from '../buttons/button/Button';
 import CheckBox from '../form/checkbox/CheckBox';
 import InputSearh from '../form/input-search/InputSearch';
 import Select from '../form/select/Select';
@@ -34,6 +35,7 @@ const UserFilters = ({
 			/>
 			<span>Solo activos</span>
 		</div>
+		<Button kind='primary'>Butón</Button>
 	</form>
 );
 export default UserFilters;

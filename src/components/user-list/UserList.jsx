@@ -1,5 +1,6 @@
 import useFilters from '../../lib/hooks/useFilters';
 import { useUsers } from '../../lib/hooks/useUsers';
+import InputTextAsync from '../form/input-text-async/InputTextAsync';
 import Title from '../title/Tile';
 import UserFilters from '../user-filters/UserFilters';
 import UserListPagination from '../user-list-pagination/UserListPagination';
@@ -22,6 +23,11 @@ const UserList = () => {
 	return (
 		<div className={style.container}>
 			<Title />
+			<InputTextAsync
+				label={'Label'}
+				error={'error'}
+				placeholder='test'
+			></InputTextAsync>
 			<UserFilters
 				search={filters.search}
 				setSearch={setSearch}
