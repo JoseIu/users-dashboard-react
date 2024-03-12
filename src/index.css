@@ -31,7 +31,6 @@
 	--text-sm: 0.875rem;
 }
 
-/* Reseteamos los margin y paddings de todas las etiquetas */
 * {
 	margin: 0;
 	padding: 0;
@@ -41,7 +40,6 @@
 	vertical-align: baseline;
 }
 
-/* Evitamos problemas con las imagenes */
 img,
 picture,
 video,
@@ -58,7 +56,6 @@ figure {
 	object-position: center center;
 }
 
-/* Reseteamos los enlaces para funcionar como cajas... */
 a {
 	display: block;
 	text-decoration: none;
@@ -66,22 +63,18 @@ a {
 	font-size: inherit;
 }
 
-/* ... excepto los que se encuentran en párrafos */
 p a {
 	display: inline;
 }
 
-/* Quitamos los puntos de los <li> */
 li {
 	list-style-type: none;
 }
 
-/* Configuramos anclas suaves */
 html {
 	scroll-behavior: smooth;
 }
 
-/* Desactivamos estilos por defecto de las principales etiquetas de texto */
 h1,
 h2,
 h3,
@@ -104,7 +97,6 @@ em {
 	color: inherit;
 }
 
-/* Evitamos problemas con los pseudoelementos de quotes */
 blockquote:before,
 blockquote:after,
 q:before,
@@ -113,7 +105,6 @@ q:after {
 	content: none;
 }
 
-/* Nivelamos problemas de tipografías y colocación de formularios */
 form,
 input,
 textarea,
@@ -125,16 +116,15 @@ label {
 	-webkit-hyphens: auto;
 	-ms-hyphens: auto;
 	hyphens: auto;
-	/* background-color: transparent; */
+	background-color: transparent;
 	/* color: inherit; */
 	display: block;
 	/* opcional */
-	/* -webkit-appearance: none;
-	-moz-appearance: none; */
-	/* appearance: none; */
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
 }
 
-/* Reseteamos las tablas */
 table,
 tr,
 td {
@@ -142,7 +132,6 @@ td {
 	border-spacing: 0;
 }
 
-/* Evitamos problemas con los SVG */
 svg {
 	width: 100%;
 	display: block;
