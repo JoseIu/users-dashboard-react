@@ -2,7 +2,7 @@
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	column-gap: 1.5em;
-	row-gap: 2em;
+	row-gap: 1.5em;
 }
 
 .form__active {

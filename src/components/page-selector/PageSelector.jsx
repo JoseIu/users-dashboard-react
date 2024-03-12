@@ -4,8 +4,6 @@ import ArrowRightIcon from '../icons/ArrowRightIcon';
 import style from './PageSelector.module.css';
 
 const PageSelector = ({ page, setPage, totalPage }) => {
-	console.log({ totalPage });
-
 	const isFirstPage = page === 1;
 	const isLastPage = page === totalPage || totalPage === 0;
 	return (
