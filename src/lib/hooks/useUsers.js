@@ -2,19 +2,16 @@ import { useEffect, useState } from 'react';
 import { filterByName, filterOnlyActive, sortBy } from '../users/userFilters';
 import usersPagination from '../users/usersPagination';
 
-const fetchUsers = async (setUsers, setError, setIsLoading, signal) => {
+const fetchUsers = async (setData, setError, signal) => {
 	try {
-		setIsLoading(true);
 		const response = await fetch('http://localhost:3000/users', { signal });
 
-		if (!response.ok) setError(true);
+		if (!response.ok) return setError();
 
 		const data = await response.json();
-		setUsers(data);
+		setData(data);
 	} catch (error) {
-		setError(true);
-	} finally {
-		setIsLoading(false);
+		setError();
 	}
 };
 const usersToDisplay = (
@@ -35,17 +32,27 @@ const usersToDisplay = (
 };
 
 export const useUsers = (filters) => {
-	const [users, setUsers] = useState([]);
-	const [error, setError] = useState(false);
-	const [isLoading, setIsLoading] = useState(true);
+	const [users, setUsers] = useState({
+		data: [],
+		error: false,
+		isLoading: true,
+	});
+
+	const setData = (data) => setUsers({ data, isLoading: false, error: false });
+	const setError = () => setUsers({ data: [], isLoading: false, error: true });
 
 	useEffect(() => {
 		const controller = new AbortController();
-		fetchUsers(setUsers, setError, setIsLoading, controller.signal);
+		fetchUsers(setData, setError, controller.signal);
 
 		return () => controller.abort();
 	}, []);
-	const { usersPaginated, totalPage } = usersToDisplay(users, filters);
+	const { usersPaginated, totalPage } = usersToDisplay(users.data, filters);
 
-	return { usersPaginated, totalPage, error, isLoading };
+	return {
+		usersPaginated,
+		totalPage,
+		error: users.error,
+		isLoading: users.isLoading,
+	};
 };
